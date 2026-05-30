@@ -169,16 +169,20 @@
             margin: 16px 0 0 0;
         }
 
-        .md5-wrapper {
-            margin-top: 14px;
-            font-size: 0.78rem;
-            color: var(--text-muted);
+        .hash-container {
+            margin-top: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .hash-wrapper {
             display: flex;
             flex-direction: column;
             gap: 4px;
         }
 
-        .md5-title {
+        .hash-title {
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -186,7 +190,7 @@
             color: #94a3b8;
         }
 
-        .md5-value {
+        .hash-value {
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
             background-color: #f1f5f9;
             color: #334155;
@@ -195,6 +199,7 @@
             border: 1px dashed #cbd5e1;
             word-break: break-all;
             user-select: all;
+            font-size: 0.75rem;
         }
         
         .card-actions {
@@ -331,13 +336,35 @@
                         `;
                     }
 
-                    // Generate MD5 section dynamically if it exists in the row data
-                    let md5HTML = '';
+                    // Build Hash Block
+                    let hashesHTML = '';
+                    let md5Block = '';
+                    let sha256Block = '';
+
                     if (app.MD5 && app.MD5.trim() !== '') {
-                        md5HTML = `
-                            <div class="md5-wrapper">
-                                <span class="md5-title">MD5 Checksum</span>
-                                <div class="md5-value" title="Double click or long press to copy hash">${app.MD5.trim()}</div>
+                        md5Block = `
+                            <div class="hash-wrapper">
+                                <span class="hash-title">MD5 Checksum</span>
+                                <div class="hash-value" title="Double click or long press to copy hash">${app.MD5.trim()}</div>
+                            </div>
+                        `;
+                    }
+
+                    if (app.SHA256 && app.SHA256.trim() !== '') {
+                        sha256Block = `
+                            <div class="hash-wrapper">
+                                <span class="hash-title">SHA-256 Checksum</span>
+                                <div class="hash-value" title="Double click or long press to copy hash">${app.SHA256.trim()}</div>
+                            </div>
+                        `;
+                    }
+
+                    // Only render hash container if at least one hash column is populated
+                    if (md5Block || sha256Block) {
+                        hashesHTML = `
+                            <div class="hash-container">
+                                ${md5Block}
+                                ${sha256Block}
                             </div>
                         `;
                     }
@@ -355,7 +382,7 @@
                                     </div>
                                 </div>
                                 <p class="card-body-text">${app.Description}</p>
-                                ${md5HTML}
+                                ${hashesHTML}
                             </div>
                             
                             <div class="card-actions">
