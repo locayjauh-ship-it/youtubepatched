@@ -168,12 +168,40 @@
             line-height: 1.5;
             margin: 16px 0 0 0;
         }
+
+        .md5-wrapper {
+            margin-top: 14px;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .md5-title {
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.7rem;
+            color: #94a3b8;
+        }
+
+        .md5-value {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            background-color: #f1f5f9;
+            color: #334155;
+            padding: 6px 10px;
+            border-radius: 6px;
+            border: 1px dashed #cbd5e1;
+            word-break: break-all;
+            user-select: all;
+        }
         
         .card-actions {
             display: flex;
             flex-direction: column;
             gap: 8px;
-            margin-top: 32px;
+            margin-top: 28px;
         }
 
         .download-btn {
@@ -275,31 +303,42 @@
                 loadingText.style.display = 'none';
 
                 results.data.forEach(app => {
-                    if (!app.AppName) return; 
+                    if (!app.AppName || !app.AppName.trim()) return; 
 
                     let buttonsHTML = '';
 
-                    if (app.DownloadLink) {
+                    if (app.DownloadLink && app.DownloadLink.trim() !== '') {
                         buttonsHTML += `
-                            <a href="${app.DownloadLink}" class="download-btn btn-direct" target="_blank">
+                            <a href="${app.DownloadLink.trim()}" class="download-btn btn-direct" target="_blank">
                                 ${icons.download} Direct Download
                             </a>
                         `;
                     }
 
-                    if (app.MirrorLink) {
+                    if (app.MirrorLink && app.MirrorLink.trim() !== '') {
                         buttonsHTML += `
-                            <a href="${app.MirrorLink}" class="download-btn btn-mirror" target="_blank">
+                            <a href="${app.MirrorLink.trim()}" class="download-btn btn-mirror" target="_blank">
                                 ${icons.mirror} Mirror Link
                             </a>
                         `;
                     }
 
-                    if (app.AdLink) {
+                    if (app.AdLink && app.AdLink.trim() !== '') {
                         buttonsHTML += `
-                            <a href="${app.AdLink}" class="download-btn btn-ad" target="_blank">
+                            <a href="${app.AdLink.trim()}" class="download-btn btn-ad" target="_blank">
                                 ${icons.heart} Support Me
                             </a>
+                        `;
+                    }
+
+                    // Generate MD5 section dynamically if it exists in the row data
+                    let md5HTML = '';
+                    if (app.MD5 && app.MD5.trim() !== '') {
+                        md5HTML = `
+                            <div class="md5-wrapper">
+                                <span class="md5-title">MD5 Checksum</span>
+                                <div class="md5-value" title="Double click or long press to copy hash">${app.MD5.trim()}</div>
+                            </div>
                         `;
                     }
 
@@ -316,6 +355,7 @@
                                     </div>
                                 </div>
                                 <p class="card-body-text">${app.Description}</p>
+                                ${md5HTML}
                             </div>
                             
                             <div class="card-actions">
