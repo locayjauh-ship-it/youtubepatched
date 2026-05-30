@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>APK Download Center</title>
     
-    <!-- Google Material Fonts & Icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
@@ -38,7 +37,7 @@
         }
         .download-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 24px;
         }
         .apk-card {
@@ -75,26 +74,60 @@
             color: #666;
             margin: 4px 0 12px 0;
         }
+        
+        /* New Button Layout Styles */
+        .card-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
         .download-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            background-color: var(--mdc-theme-primary);
-            color: white;
             text-decoration: none;
-            padding: 12px;
+            padding: 10px;
             border-radius: 4px;
             font-weight: 500;
+            font-size: 0.9rem;
             text-transform: uppercase;
-            letter-spacing: 0.75px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-            transition: background-color 0.2s;
-            margin-top: 16px;
+            letter-spacing: 0.5px;
+            transition: all 0.2s;
+            cursor: pointer;
+            box-sizing: border-box;
+            width: 100%;
         }
-        .download-btn:hover {
+        
+        /* Specific Button Colors */
+        .btn-direct {
+            background-color: var(--mdc-theme-primary);
+            color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .btn-direct:hover {
             background-color: #4b00b4;
         }
+        
+        .btn-mirror {
+            background-color: transparent;
+            color: var(--mdc-theme-primary);
+            border: 1px solid var(--mdc-theme-primary);
+        }
+        .btn-mirror:hover {
+            background-color: rgba(98, 0, 238, 0.05);
+        }
+
+        .btn-ad {
+            background-color: #ff9800; /* Material Orange */
+            color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .btn-ad:hover {
+            background-color: #f57c00;
+        }
+
         #loading {
             text-align: center;
             font-weight: 500;
@@ -116,16 +149,14 @@
 
         <div id="loading">Loading apps from database...</div>
 
-        <!-- The grid is now empty. JavaScript will fill it. -->
         <main class="download-grid" id="app-container"></main>
     </div>
 
-    <!-- PapaParse Library to read the Google Sheet CSV -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
     
     <script>
         // ⚠️ PASTE YOUR GOOGLE SHEETS CSV LINK HERE
-        const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR-90ZXL1hra4KgDJClg6_4x-LK9zn64KslBHS1P7U6zGOXKtKojQWjlKha9bPggppyYn_RMrT0Xe1h/pub?gid=0&single=true&output=csv';
+        const sheetUrl = 'YOUR_GOOGLE_SHEETS_CSV_LINK_HERE';
 
         Papa.parse(sheetUrl, {
             download: true,
@@ -134,15 +165,43 @@
                 const container = document.getElementById('app-container');
                 const loadingText = document.getElementById('loading');
                 
-                // Remove loading text
                 loadingText.style.display = 'none';
 
-                // Loop through each row in the Google Sheet
                 results.data.forEach(app => {
                     // Skip empty rows
                     if (!app.AppName) return; 
 
-                    // Create the HTML card for each app
+                    // 1. Dynamically build the buttons based on what is in the spreadsheet
+                    let buttonsHTML = '';
+
+                    // Main Download Link
+                    if (app.DownloadLink) {
+                        buttonsHTML += `
+                            <a href="${app.DownloadLink}" class="download-btn btn-direct" target="_blank">
+                                <span class="material-icons">download</span> Direct Link
+                            </a>
+                        `;
+                    }
+
+                    // Mirror Link
+                    if (app.MirrorLink) {
+                        buttonsHTML += `
+                            <a href="${app.MirrorLink}" class="download-btn btn-mirror" target="_blank">
+                                <span class="material-icons">cloud_sync</span> Mirror Link
+                            </a>
+                        `;
+                    }
+
+                    // Ad Link
+                    if (app.AdLink) {
+                        buttonsHTML += `
+                            <a href="${app.AdLink}" class="download-btn btn-ad" target="_blank">
+                                <span class="material-icons">monetization_on</span> Support Dev (Ad)
+                            </a>
+                        `;
+                    }
+
+                    // 2. Insert the generated buttons into the card HTML
                     const cardHTML = `
                         <section class="apk-card">
                             <div>
@@ -150,18 +209,18 @@
                                     <span class="material-icons card-icon">android</span>
                                     <div>
                                         <h3 class="card-title">${app.AppName}</h3>
-                                        <div class="card-meta">Version ${app.Version} • Google Drive</div>
+                                        <div class="card-meta">Version ${app.Version}</div>
                                     </div>
                                 </div>
                                 <p>${app.Description}</p>
                             </div>
-                            <a href="${app.DownloadLink}" class="download-btn">
-                                <span class="material-icons">download</span> Download APK
-                            </a>
+                            
+                            <div class="card-actions">
+                                ${buttonsHTML}
+                            </div>
                         </section>
                     `;
                     
-                    // Add the card to the webpage
                     container.innerHTML += cardHTML;
                 });
             },
