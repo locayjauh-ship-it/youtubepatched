@@ -1,14 +1,14 @@
-"<!DOCTYPE html>
-<html lang=""en"">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset=""UTF-8"">
-    <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>APK Download Center</title>
     
     <!-- Google Material Fonts & Icons -->
-    <link rel=""stylesheet"" href=""https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"">
-    <link rel=""stylesheet"" href=""https://fonts.googleapis.com/icon?family=Material+Icons"">
-    <link href=""https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css"" rel=""stylesheet"">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
 
     <style>
         :root {
@@ -104,12 +104,12 @@
 </head>
 <body>
 
-    <header class=""navbar"">
-        <div style=""font-size: 1.5rem; font-weight: 500;"">APK Distribution Center</div>
+    <header class="navbar">
+        <div style="font-size: 1.5rem; font-weight: 500;">APK Distribution Center</div>
     </header>
 
-    <div class=""container"">
-        <div class=""header-text"">
+    <div class="container">
+        <div class="header-text">
             <h2>Pre-compiled APK Downloads</h2>
             <p>Can't compile the source code yourself? Download the ready-to-install Android apps directly below.</p>
         </div>
@@ -144,19 +144,19 @@
 
                     // Create the HTML card for each app
                     const cardHTML = `
-                        <section class=""apk-card"">
+                        <section class="apk-card">
                             <div>
-                                <div class=""card-header"">
-                                    <span class=""material-icons card-icon"">android</span>
+                                <div class="card-header">
+                                    <span class="material-icons card-icon">android</span>
                                     <div>
-                                        <h3 class=""card-title"">${app.AppName}</h3>
-                                        <div class=""card-meta"">Version ${app.Version} • Google Drive</div>
+                                        <h3 class="card-title">${app.AppName}</h3>
+                                        <div class="card-meta">Version ${app.Version} • Google Drive</div>
                                     </div>
                                 </div>
                                 <p>${app.Description}</p>
                             </div>
-                            <a href=""${app.DownloadLink}"" class=""download-btn"">
-                                <span class=""material-icons"">download</span> Download APK
+                            <a href="${app.DownloadLink}" class="download-btn">
+                                <span class="material-icons">download</span> Download APK
                             </a>
                         </section>
                     `;
@@ -166,10 +166,10 @@
                 });
             },
             error: function(err) {
-                document.getElementById('loading').innerText = ""Error loading apps. Please check the spreadsheet link."";
+                document.getElementById('loading').innerText = "Error loading apps. Please check the spreadsheet link.";
                 console.error(err);
             }
         });
     </script>
 </body>
-</html>"
+</html>
