@@ -97,7 +97,34 @@
             line-height: 1.6;
             margin: 0;
         }
+        .official-link-wrapper {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
 
+        .official-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+            transition: color 0.2s ease;
+        }
+
+        .official-link:hover {
+            color: var(--primary-hover);
+            text-decoration: underline;
+        }
+
+        .official-link-icon {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
         .download-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -279,6 +306,13 @@
         <div class="header-text">
             <h2>Pre-Patched Downloads</h2>
             <p>Can't patch it yourself? Grab a ready-to-install, patched APK instantly. There are no viruses or suspicious code—just an application patched directly from Morphe Patcher using the default settings. Skip the hassle and start using it right away!</p>
+            <div class="official-link-wrapper">
+                You can patch it yourself from the official website 
+                <a href="https://morphe.software" class="official-link" target="_blank">
+                    here
+                    <svg class="official-link-icon" viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                </a>.
+            </div>
         </div>
 
         <div id="loading">Loading apps...</div>
