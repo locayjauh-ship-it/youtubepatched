@@ -7,233 +7,257 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --bg-main: #f8fafc;
-            --bg-card: #ffffff;
-            --text-main: #0f172a;
-            --text-muted: #64748b;
-            --border-color: #e2e8f0;
+            /* Material 3 Expressive Theme Tokens */
+            --md-sys-color-primary: #385a92;
+            --md-sys-color-on-primary: #ffffff;
+            --md-sys-color-primary-container: #d6e3ff;
+            --md-sys-color-on-primary-container: #001b3e;
             
-            --primary: #4f46e5;
-            --primary-hover: #4338ca;
-            --secondary: #0f172a;
-            --secondary-hover: #1e293b;
-            --accent: #f59e0b;
-            --accent-hover: #d97706;
+            --md-sys-color-secondary: #565f71;
+            --md-sys-color-on-secondary: #ffffff;
+            --md-sys-color-secondary-container: #dae2f9;
+            --md-sys-color-on-secondary-container: #131c2c;
+
+            --md-sys-color-tertiary: #6f5575;
+            --md-sys-color-on-tertiary: #ffffff;
+            --md-sys-color-tertiary-container: #f9d8fd;
+            --md-sys-color-on-tertiary-container: #28132e;
+
+            --md-sys-color-background: #f9f9fc;
+            --md-sys-color-on-background: #191c20;
+            --md-sys-color-surface: #f9f9fc;
+            --md-sys-color-surface-container: #f0f3f8;
+            --md-sys-color-surface-container-high: #e2e7ec;
+            
+            --md-sys-color-outline: #74777f;
+            --md-sys-color-outline-variant: #c4c6d0;
         }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             margin: 0;
-            background-color: var(--bg-main);
-            color: var(--text-main);
+            background-color: var(--md-sys-color-background);
+            color: var(--md-sys-color-on-background);
             -webkit-font-smoothing: antialiased;
         }
 
+        /* Top App Bar */
         .navbar {
-            background-color: var(--bg-card);
-            border-bottom: 1px solid var(--border-color);
-            padding: 20px 0;
+            background-color: var(--md-sys-color-surface);
+            padding: 16px 0;
             position: sticky;
             top: 0;
             z-index: 100;
-            backdrop-filter: blur(8px);
-            background-color: rgba(255, 255, 255, 0.85);
+            border-bottom: 1px solid var(--md-sys-color-outline-variant);
         }
 
         .nav-container {
-            max-width: 1000px;
+            max-width: 1040px;
             margin: 0 auto;
             padding: 0 24px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
         }
 
         .brand {
-            font-size: 1.15rem;
-            font-weight: 700;
+            font-size: 1.35rem;
+            font-weight: 800;
             letter-spacing: -0.5px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
+            color: var(--md-sys-color-on-background);
         }
 
         .brand-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--primary);
+            width: 12px;
+            height: 12px;
+            background-color: var(--md-sys-color-primary);
             border-radius: 50%;
         }
 
         .container {
-            max-width: 1000px;
-            margin: 50px auto;
+            max-width: 1040px;
+            margin: 54px auto;
             padding: 0 24px;
         }
 
+        /* Expressive Header Block */
         .header-text {
             text-align: center;
-            margin-bottom: 48px;
-            max-width: 600px;
+            margin-bottom: 56px;
+            max-width: 720px;
             margin-left: auto;
             margin-right: auto;
         }
 
         .header-text h2 {
-            font-size: 2.25rem;
-            font-weight: 700;
-            letter-spacing: -1px;
-            margin-bottom: 12px;
-            color: var(--text-main);
+            font-size: 2.75rem;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            margin: 0 0 16px 0;
+            color: var(--md-sys-color-on-background);
+            line-height: 1.15;
         }
 
         .header-text p {
-            color: var(--text-muted);
-            font-size: 1.05rem;
+            color: var(--md-sys-color-secondary);
+            font-size: 1.1rem;
             line-height: 1.6;
-            margin: 0;
+            margin: 0 0 16px 0;
+            font-weight: 500;
         }
+
         .official-link-wrapper {
             display: inline-flex;
             align-items: center;
             gap: 4px;
             font-size: 0.95rem;
-            color: var(--text-muted);
+            color: var(--md-sys-color-secondary);
+            background: var(--md-sys-color-surface-container);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-weight: 500;
         }
 
         .official-link {
-            color: var(--primary);
+            color: var(--md-sys-color-primary);
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
             display: inline-flex;
             align-items: center;
-            gap: 2px;
-            transition: color 0.2s ease;
+            gap: 4px;
+            transition: opacity 0.2s ease;
         }
 
         .official-link:hover {
-            color: var(--primary-hover);
             text-decoration: underline;
+            opacity: 0.85;
         }
 
         .official-link-icon {
-            width: 14px;
-            height: 14px;
+            width: 16px;
+            height: 16px;
             fill: currentColor;
         }
+
+        /* M3 Grid Layout */
         .download-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 24px;
         }
 
+        /* Expressive Cards - Large Radius */
         .apk-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 28px;
+            background: var(--md-sys-color-surface-container);
+            border-radius: 28px;
+            padding: 32px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), background-color 0.2s ease;
         }
 
         .apk-card:hover {
-            transform: translateY(-4px);
-            border-color: #cbd5e1;
-            box-shadow: 0 12px 24px -10px rgba(15, 23, 42, 0.05);
+            transform: scale(1.015);
+            background: var(--md-sys-color-surface-container-high);
         }
 
         .card-header {
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             gap: 16px;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
         }
 
         .card-icon-wrapper {
-            background-color: #f1f5f9;
-            padding: 10px;
-            border-radius: 12px;
+            background-color: var(--md-sys-color-primary-container);
+            padding: 12px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
         .card-icon {
-            width: 24px;
-            height: 24px;
-            fill: var(--primary);
+            width: 28px;
+            height: 28px;
+            fill: var(--md-sys-color-on-primary-container);
         }
 
         .card-title {
             margin: 0;
-            font-size: 1.2rem;
-            font-weight: 600;
-            letter-spacing: -0.3px;
-            line-height: 1.3;
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: -0.4px;
+            color: var(--md-sys-color-on-background);
+            line-height: 1.2;
         }
 
+        /* M3 Badges/Chips */
         .card-meta {
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--text-muted);
-            background: #f1f5f9;
-            padding: 2px 8px;
-            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--md-sys-color-on-secondary-container);
+            background: var(--md-sys-color-secondary-container);
+            padding: 4px 12px;
+            border-radius: 8px;
             display: inline-block;
             margin-top: 6px;
         }
 
         .card-body-text {
-            color: var(--text-muted);
+            color: var(--md-sys-color-secondary);
             font-size: 0.95rem;
-            line-height: 1.5;
-            margin: 16px 0 0 0;
+            line-height: 1.6;
+            margin: 0 0 24px 0;
+            font-weight: 500;
         }
 
         .hash-container {
-            margin-top: 16px;
+            margin-top: 20px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 14px;
         }
 
         .hash-wrapper {
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 6px;
         }
 
         .hash-title {
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.7px;
             font-size: 0.7rem;
-            color: #94a3b8;
+            color: var(--md-sys-color-outline);
         }
 
         .hash-value {
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-            background-color: #f1f5f9;
-            color: #334155;
-            padding: 6px 10px;
-            border-radius: 6px;
-            border: 1px dashed #cbd5e1;
+            background-color: var(--md-sys-color-surface);
+            color: var(--md-sys-color-on-background);
+            padding: 8px 12px;
+            border-radius: 12px;
+            border: 1px solid var(--md-sys-color-outline-variant);
             word-break: break-all;
             user-select: all;
             font-size: 0.75rem;
         }
         
+        /* Actions - Pill Shapes */
         .card-actions {
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            margin-top: 28px;
+            gap: 10px;
+            margin-top: 32px;
         }
 
         .download-btn {
@@ -242,52 +266,47 @@
             justify-content: center;
             gap: 8px;
             text-decoration: none;
-            padding: 12px 16px;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.2s ease;
+            padding: 14px 24px;
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: filter 0.2s ease, opacity 0.2s ease;
             cursor: pointer;
             box-sizing: border-box;
             width: 100%;
         }
 
-        .btn-direct {
-            background-color: var(--primary);
-            color: white;
+        .download-btn:hover {
+            filter: brightness(0.92);
         }
-        .btn-direct:hover {
-            background-color: var(--primary-hover);
+
+        .btn-direct {
+            background-color: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
         }
         
         .btn-mirror {
-            background-color: var(--secondary);
-            color: white;
-        }
-        .btn-mirror:hover {
-            background-color: var(--secondary-hover);
+            background-color: var(--md-sys-color-secondary-container);
+            color: var(--md-sys-color-on-secondary-container);
         }
 
         .btn-ad {
-            background-color: #fffbeb;
-            color: #b45309;
-            border: 1px solid #fde68a;
-        }
-        .btn-ad:hover {
-            background-color: #fef3c7;
+            background-color: var(--md-sys-color-tertiary-container);
+            color: var(--md-sys-color-on-tertiary-container);
         }
 
         .btn-icon {
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
             fill: currentColor;
         }
 
         #loading {
             text-align: center;
-            font-weight: 500;
-            color: var(--text-muted);
-            padding: 40px 0;
+            font-weight: 600;
+            color: var(--md-sys-color-secondary);
+            padding: 48px 0;
+            font-size: 1.1rem;
         }
     </style>
 </head>
@@ -311,7 +330,7 @@
                 <a href="https://morphe.software" class="official-link" target="_blank">
                     here
                     <svg class="official-link-icon" viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
-                </a>.
+                </a>
             </div>
         </div>
 
@@ -325,7 +344,6 @@
     <script>
         const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR-90ZXL1hra4KgDJClg6_4x-LK9zn64KslBHS1P7U6zGOXKtKojQWjlKha9bPggppyYn_RMrT0Xe1h/pub?gid=0&single=true&output=csv';
 
-        // Clean inline SVG Icons
         const icons = {
             download: `<svg class="btn-icon" viewBox="0 0 24 24"><path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"/></svg>`,
             mirror: `<svg class="btn-icon" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>`,
@@ -370,7 +388,6 @@
                         `;
                     }
 
-                    // Build Hash Block
                     let hashesHTML = '';
                     let md5Block = '';
                     let sha256Block = '';
@@ -393,7 +410,6 @@
                         `;
                     }
 
-                    // Only render hash container if at least one hash column is populated
                     if (md5Block || sha256Block) {
                         hashesHTML = `
                             <div class="hash-container">
