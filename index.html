@@ -225,6 +225,15 @@
             border-radius: 8px;
         }
 
+        .card-meta-arch {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--md-sys-color-on-background);
+            background: var(--md-sys-color-outline-variant);
+            padding: 4px 12px;
+            border-radius: 8px;
+        }
+
         .card-body-text {
             color: var(--md-sys-color-secondary);
             font-size: 0.95rem;
@@ -439,6 +448,12 @@
                         patchMetaHTML = `<div class="card-meta-patch">Patch v${app.PatchVersion.trim()}</div>`;
                     }
 
+                    // Build Architecture badge dynamically if data exists
+                    let archMetaHTML = '';
+                    if (app.Architecture && app.Architecture.trim() !== '') {
+                        archMetaHTML = `<div class="card-meta-arch">${app.Architecture.trim()}</div>`;
+                    }
+
                     const cardHTML = `
                         <section class="apk-card">
                             <div>
@@ -451,6 +466,7 @@
                                         <div class="card-meta-container">
                                             <div class="card-meta">v${app.Version}</div>
                                             ${patchMetaHTML}
+                                            ${archMetaHTML}
                                         </div>
                                     </div>
                                 </div>
