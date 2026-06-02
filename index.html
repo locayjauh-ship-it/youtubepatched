@@ -113,28 +113,26 @@
         }
 
         .official-link-wrapper {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
+        .official-link-wrapper {
+            display: inline-block; /* Allows standard word text-wrapping rules */
+            text-align: center;
             font-size: 0.95rem;
             color: var(--md-sys-color-secondary);
             background: var(--md-sys-color-surface-container);
-            padding: 10px 20px;
-            border-radius: 24px; /* Transition smoothly from pill to rounded box on mobile */
+            padding: 12px 24px;
+            border-radius: 24px; /* Clean rounded edges that scale beautifully */
             font-weight: 500;
-            line-height: 1.4;
+            line-height: 1.6;
+            max-width: 100%; /* Prevents horizontal clipping on ultra-small screens */
+            box-sizing: border-box;
         }
 
         .official-link {
             color: var(--md-sys-color-primary);
             text-decoration: none;
             font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            white-space: nowrap; /* Keeps 'here [icon]' bound tightly together */
+            display: inline-inline; /* Ensures it behaves as standard inline text */
+            white-space: nowrap; /* Forces 'here' and the icon to stick together on one line */
             transition: opacity 0.2s ease;
         }
 
@@ -145,9 +143,13 @@
         }
 
         .official-link-icon {
-            width: 16px;
-            height: 16px;
+            width: 14px;
+            height: 14px;
             fill: currentColor;
+            display: inline-block;
+            vertical-align: middle;
+            margin-top: -2px; /* Keeps the material icon geometrically centered with text */
+            margin-left: 2px;
         }
 
         /* M3 Grid Layout */
